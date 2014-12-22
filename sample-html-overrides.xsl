@@ -9,21 +9,12 @@
        
     -->   
   <xsl:template match="*[contains(@class,' topic/body ')]" name="topic.body">
-    <xsl:variable name="flagrules">
-      <xsl:call-template name="getrules"/>
-    </xsl:variable>
     <div>
       <xsl:call-template name="commonattributes"/>
-      <xsl:call-template name="gen-style">
-        <xsl:with-param name="flagrules" select="$flagrules"></xsl:with-param>
-      </xsl:call-template>
+      <xsl:call-template name="gen-style"/>
       <xsl:call-template name="setidaname"/>
-      <xsl:call-template name="start-flagit">
-        <xsl:with-param name="flagrules" select="$flagrules"></xsl:with-param>     
-      </xsl:call-template>
-      <xsl:call-template name="start-revflag">
-        <xsl:with-param name="flagrules" select="$flagrules"/>  
-      </xsl:call-template>
+      <xsl:call-template name="start-flagit"/>
+      <xsl:call-template name="start-revflag"/>
       <!-- here, you can generate a toc based on what's a child of body -->
       <!--xsl:call-template name="gen-sect-ptoc"/--><!-- Works; not always wanted, though; could add a param to enable it.-->
       
@@ -47,12 +38,8 @@
       <xsl:apply-templates select="following-sibling::*[contains(@class,' topic/related-links ')]" mode="prereqs"/>
       
       <xsl:apply-templates/>
-      <xsl:call-template name="end-revflag">
-        <xsl:with-param name="flagrules" select="$flagrules"/>  
-      </xsl:call-template>
-      <xsl:call-template name="end-flagit">
-        <xsl:with-param name="flagrules" select="$flagrules"></xsl:with-param> 
-      </xsl:call-template>
+      <xsl:call-template name="end-revflag"/>
+      <xsl:call-template name="end-flagit"/>
     </div><xsl:value-of select="$newline"/>
   </xsl:template>
   
