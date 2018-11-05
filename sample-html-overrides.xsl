@@ -40,7 +40,7 @@
       <xsl:apply-templates/>
       <xsl:call-template name="end-revflag"/>
       <xsl:call-template name="end-flagit"/>
-    </div><xsl:value-of select="$newline"/>
+    </div><xsl:value-of select="'&#x0a;'"/>
   </xsl:template>
   
   <xsl:template mode="topic-body" match="text()"/>
